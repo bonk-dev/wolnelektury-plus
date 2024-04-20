@@ -1,0 +1,26 @@
+{
+  "name": "wolnelektury-plus",
+  "version": "0.1",
+  "description": "Dodaje użyteczne funkcje do czytnika WolneLektury",
+  "main": "index.js",
+  "scripts": {
+    "dev-chrome": "npx webextension-toolbox dev chrome",
+    "dev-firefox": "npx webextension-toolbox dev firefox",
+    "build-chrome": "npx webextension-toolbox build chrome",
+    "build-firefox": "npx webextension-toolbox build firefox"
+  },
+  "author": "bonk",
+  "license": "MIT",
+  "dependencies": {
+    "tippy.js": "^6.3.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "@webextension-toolbox/webextension-toolbox": "^7.1.1",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^7.1.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.91.0"
+  }
+}

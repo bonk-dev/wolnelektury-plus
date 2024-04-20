@@ -1,0 +1,10 @@
+{
+    "extName": {
+        "message": "WolneLektury+",
+        "description": "Extension name"
+    },
+    "extDescription": {
+        "message": "Adds useful features to the WolneLektury reader",
+        "description": "Extension description"
+    }
+}

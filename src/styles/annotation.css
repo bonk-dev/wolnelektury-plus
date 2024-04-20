@@ -1,0 +1,34 @@
+:root {
+    --wlplus-annotation-underline-color: #083f4d;
+    --wlplus-annotation-highlight-color: #ff920057;
+}
+
+/* Hide original annotations */
+#main-text #book-text a.annotation {
+    display: none;
+}
+
+.wlplus-clickable-annotation {
+    cursor: pointer;
+}
+.wlplus-underline {
+    text-decoration: underline double 2px var(--wlplus-annotation-underline-color);
+}
+.wlplus-highlight {
+    background: var(--wlplus-annotation-highlight-color);
+}
+
+/* Restore the original annotation UI when printing */
+@media print, body.wlplus-hide-ui {
+    #main-text #book-text a.annotation {
+      display: unset;
+    }
+
+    .wlplus-clickable-annotation.wlplus-underline {
+      text-decoration: none;
+    }
+
+    .wlplus-clickable-annotation.wlplus-highlight {
+      background: unset;
+    }
+}

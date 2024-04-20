@@ -1,0 +1,10 @@
+{
+    "extName": {
+        "message": "WolneLektury+",
+        "description": "Nazwa rozszerzenia"
+    },
+    "extDescription": {
+        "message": "Dodaje użyteczne funkcje do czytnika WolneLektury",
+        "description": "Opis rozszerzenia"
+    }
+}

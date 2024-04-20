@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extName__",
+  "version": "0.1",
+  "default_locale": "pl",
+  "description": "__MSG_extDescription__",
+  "icons": {
+    "64": "icons/wlplus-64.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://wolnelektury.pl/katalog/lektura/*"],
+      "js": ["js/wlplus.js"],
+      "css": ["styles/annotation.css"]
+    }
+  ],
+  "__firefox__browser_specific_settings": {
+    "gecko": {
+      "id": "{babbb513-1623-4dc3-89e5-f79dc4593532}"
+    }
+  }
+}
