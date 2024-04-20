@@ -1,6 +1,6 @@
-# ![Logo](src/icons/wlplus-64.png) WolneLektury-Plus 
+# ![Logo](src/icons/wlplus-64.png) WolneLektury+ 
 
-WolneLektury-Plus is an extension that adds useful functions to the reader on
+WolneLektury+ is an extension that adds useful functions to the reader on
 [wolnelektury.pl](https://wolnelektury.pl).
 
 ## Features

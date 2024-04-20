@@ -1,6 +1,6 @@
-# ![Logo](src/icons/wlplus-64.png) WolneLektury-Plus 
+# ![Logo](src/icons/wlplus-64.png) WolneLektury+ 
 
-WolneLektury-Plus to rozszerzenie dodające użyteczne funkcje do czytnika na
+WolneLektury+ to rozszerzenie dodające użyteczne funkcje do czytnika na
 stronie [wolnelektury.pl](https://wolnelektury.pl).
 
 ## Funkcje
