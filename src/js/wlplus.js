@@ -54,7 +54,7 @@ class Annotation {
         const concat = footnoteText.innerText;
         const emElement = footnoteText.querySelector('em');
         if (emElement == null || !emElement.classList.contains('foreign-word')) {
-            console.debug("No explicit foregin word detected for annotation " + this.ordinal);
+            console.debug("No explicit foreign word detected for annotation " + this.ordinal);
             const quoteRegex = /^„(.*)”(?:\s?—\s?)?(.*)$/g;
             const quoteRegexResult = quoteRegex.exec(footnoteText.innerText);
             if (quoteRegexResult != null) {
@@ -115,7 +115,7 @@ class Annotation {
 
 const findAnnotations = () => {
     /*
-     * A single page containts multiple verses:
+     * A single page contains multiple verses:
      * <div class='verse'>
      *    [verse text]
      *    <a name="anchor-idm285"></a>
@@ -144,8 +144,8 @@ const findAnnotations = () => {
 console.group("WolneLektury+");
 try {
     let annotations = findAnnotations();
-    console.log("Używa tippy.js (https://www.npmjs.com/package/tippy.js)");
-    console.log("Znalezione adnotacje: " + annotations.length);
+    console.log("Using tippy.js (https://www.npmjs.com/package/tippy.js)");
+    console.log("Found annotations: " + annotations.length);
 
     for (let ann of annotations) {
         try {
