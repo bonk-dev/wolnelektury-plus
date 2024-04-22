@@ -2,6 +2,21 @@ import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away-subtle.css';
 
+function split(str, sep, n) {
+    var out = [];
+
+    while(n--) { 
+        const regMatch = sep.exec(str);
+        if (regMatch == null) {
+            break;
+        }
+        out.push(str.slice(sep.lastIndex, regMatch.index));
+    }
+
+    out.push(str.slice(sep.lastIndex));
+    return out;
+}
+
 class Annotation {
     // number inside the square brackets (e.g. [71])
     ordinal
@@ -37,10 +52,35 @@ class Annotation {
         }
 
         const concat = footnoteText.innerText;
-        this.annotatedText = footnoteText.querySelector('em').innerText;
-        this.explanation = concat
-            .replace(this.annotatedText, '')
-            .trim();
+        const emElement = footnoteText.querySelector('em');
+        if (emElement == null || !emElement.classList.contains('foreign-word')) {
+            console.debug("No explicit foregin word detected for annotation " + this.ordinal);
+            const quoteRegex = /^„(.*)”(?:\s?—\s?)?(.*)$/g;
+            const quoteRegexResult = quoteRegex.exec(footnoteText.innerText);
+            if (quoteRegexResult != null) {
+                console.debug("Found a quote annotation");
+                this.annotatedText = quoteRegexResult[1];
+                this.explanation = quoteRegexResult[2];
+            }
+            else {
+	        const footnoteSplit = split(footnoteText.innerText, /—/g, 2);
+	        if (footnoteSplit.length < 2) {
+	            console.debug("No '—' character found either");
+	            this.annotatedText = this.anchorElement.previousSibling.textContent;
+	            this.explanation = footnoteText.innerText;
+	        }
+	        else {
+	            this.annotatedText = footnoteSplit[0].trim();
+	            this.explanation = footnoteSplit[1].trim();
+	        }
+            }
+        }
+        else {
+	    this.annotatedText = footnoteText.querySelector('em').innerText;
+	    this.explanation = concat
+	        .replace(this.annotatedText, '')
+	        .trim();
+        }
     }
 
     surroundAnnotatedText(tag, className) {
