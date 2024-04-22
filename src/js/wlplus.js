@@ -3,7 +3,7 @@ import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away-subtle.css';
 
 function split(str, sep, n) {
-    var out = [];
+    const out = [];
 
     while(n--) { 
         const regMatch = sep.exec(str);
@@ -63,16 +63,16 @@ class Annotation {
                 this.explanation = quoteRegexResult[2];
             }
             else {
-	        const footnoteSplit = split(footnoteText.innerText, /—/g, 2);
-	        if (footnoteSplit.length < 2) {
-	            console.debug("No '—' character found either");
-	            this.annotatedText = this.anchorElement.previousSibling.textContent;
-	            this.explanation = footnoteText.innerText;
-	        }
-	        else {
-	            this.annotatedText = footnoteSplit[0].trim();
-	            this.explanation = footnoteSplit[1].trim();
-	        }
+                const footnoteSplit = split(footnoteText.innerText, /—/g, 2);
+                if (footnoteSplit.length < 2) {
+                    console.debug("No '—' character found either");
+                    this.annotatedText = this.anchorElement.previousSibling.textContent;
+                    this.explanation = footnoteText.innerText;
+                }
+                else {
+                    this.annotatedText = footnoteSplit[0].trim();
+                    this.explanation = footnoteSplit[1].trim();
+                }
             }
         }
         else {
