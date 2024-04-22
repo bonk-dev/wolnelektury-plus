@@ -29,6 +29,10 @@ class Annotation {
 
     // text outside the <em></em> in footnote
     explanation
+
+    // the text is annotated multiple times, e.g.: "text" [1][2]
+    multiple
+
     constructor(annotationElement) {
         this.anchorElement = annotationElement.previousSibling;
         this.ordinal = parseInt(annotationElement
@@ -129,9 +133,28 @@ const findAnnotations = () => {
 
     const annotations = document.querySelectorAll('a:not(div#footnotes a).annotation');
     let annotationObjects = [];
+    let lastAnnotation = null;
     for (let annotationElement of annotations) {
         try {
-            annotationObjects.push(new Annotation(annotationElement));
+            const currentAnnotation = new Annotation(annotationElement);
+
+            if (lastAnnotation != null &&
+                lastAnnotation.anchorElement.nextSibling != null &&
+                lastAnnotation.anchorElement.nextSibling === currentAnnotation.anchorElement.previousSibling)
+            {
+                // double annotation (e.g.: "text" [1][2])
+                console.debug(`Found a double annotation: ${lastAnnotation.ordinal} & ${currentAnnotation.ordinal}`);
+
+                lastAnnotation.multiple = true;
+                lastAnnotation.explanation =
+                    `[${lastAnnotation.ordinal}] ${lastAnnotation.explanation}<br>
+                    [${currentAnnotation.ordinal}] ${currentAnnotation.explanation}`;
+            }
+            else {
+                annotationObjects.push(currentAnnotation);
+            }
+
+            lastAnnotation = currentAnnotation;
         } catch (e) {
             console.error(`Could not process an annotation: ${annotationElement}`);
             console.error(`Site url: ${window.location.href}`);
@@ -150,7 +173,13 @@ try {
     for (let ann of annotations) {
         try {
             const surroundElement = ann.surroundAnnotatedText('span', 'wlplus-clickable-annotation wlplus-highlight');
-            surroundElement.dataset.tippyContent = `${ann.annotatedText} - ${ann.explanation}`;
+
+            if (ann.multiple) {
+                surroundElement.dataset.tippyContent = `${ann.annotatedText}:<br>${ann.explanation}`;
+            }
+            else {
+                surroundElement.dataset.tippyContent = `${ann.annotatedText} - ${ann.explanation}`;
+            }
         } catch (e) {
             console.error(`Could not surround the annotation: ${ann.ordinal}`);
             console.error(`Site url: ${window.location.href}`);
@@ -159,7 +188,8 @@ try {
     }
 
     tippy('[data-tippy-content]', {
-        animation: 'shift-away-subtle'
+        animation: 'shift-away-subtle',
+        allowHTML: true
     });
 }
 finally {
