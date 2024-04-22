@@ -1,6 +1,6 @@
 {
   "name": "wolnelektury-plus",
-  "version": "0.1",
+  "version": "0.2",
   "description": "Dodaje użyteczne funkcje do czytnika WolneLektury",
   "main": "index.js",
   "scripts": {
