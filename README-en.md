@@ -3,6 +3,8 @@
 WolneLektury+ is an extension that adds useful functions to the reader on
 [wolnelektury.pl](https://wolnelektury.pl).
 
+[![Download page link](assets/get-the-addon-firefox.png)](https://addons.mozilla.org/en-US/firefox/addon/wolnelektury-plus)
+
 ## Features
 ### Better footnotes
 By hovering the mouse over the selected words, the corresponding footnote will appear.

@@ -3,6 +3,8 @@
 WolneLektury+ to rozszerzenie dodające użyteczne funkcje do czytnika na
 stronie [wolnelektury.pl](https://wolnelektury.pl).
 
+[![Link do strony pobierania](assets/get-the-addon-firefox.png)](https://addons.mozilla.org/en-US/firefox/addon/wolnelektury-plus)
+
 ## Funkcje
 ### Przypisy
 Po najechaniu myszką na zaznaczone wyrazy pojawi się odpowiadający przypis. 
