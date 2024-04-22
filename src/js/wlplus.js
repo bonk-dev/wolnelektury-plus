@@ -130,7 +130,13 @@ const findAnnotations = () => {
     const annotations = document.querySelectorAll('a:not(div#footnotes a).annotation');
     let annotationObjects = [];
     for (let annotationElement of annotations) {
-        annotationObjects.push(new Annotation(annotationElement));
+        try {
+            annotationObjects.push(new Annotation(annotationElement));
+        } catch (e) {
+            console.error(`Could not process an annotation: ${annotationElement}`);
+            console.error(`Site url: ${window.location.href}`);
+            console.error(e);
+        }
     }
     return annotationObjects;
 };
@@ -142,8 +148,14 @@ try {
     console.log("Znalezione adnotacje: " + annotations.length);
 
     for (let ann of annotations) {
-        const surroundElement = ann.surroundAnnotatedText('span', 'wlplus-clickable-annotation wlplus-highlight');
-        surroundElement.dataset.tippyContent = `${ann.annotatedText} - ${ann.explanation}`;
+        try {
+            const surroundElement = ann.surroundAnnotatedText('span', 'wlplus-clickable-annotation wlplus-highlight');
+            surroundElement.dataset.tippyContent = `${ann.annotatedText} - ${ann.explanation}`;
+        } catch (e) {
+            console.error(`Could not surround the annotation: ${ann.ordinal}`);
+            console.error(`Site url: ${window.location.href}`);
+            console.error(e);
+        }
     }
 
     tippy('[data-tippy-content]', {
